@@ -43,7 +43,7 @@ def index():
   flask.g.vocab = WORDS.as_list();
   flask.session["target_count"] = min( len(flask.g.vocab), CONFIG.success_at_count )
   flask.session["jumble"] = jumbled(flask.g.vocab, flask.session["target_count"])
-  flask.session["matches"] = [ ]
+  flask.session["matches"] = {}
   app.logger.debug("Session variables have been set")
   assert flask.session["matches"] == [ ]
   assert flask.session["target_count"] > 0
@@ -86,7 +86,7 @@ def check():
   ## The data we need, from form and from cookie
   text = request.form["attempt"]
   jumble = flask.session["jumble"]
-  matches = flask.session.get("matches", []) # Default to empty list
+  matches = flask.session.get("matches", {}) # Default to empty list
 
   app.logger.debug("Past the opening")
 
