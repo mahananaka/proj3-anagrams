@@ -45,7 +45,7 @@ def index():
   flask.session["jumble"] = jumbled(flask.g.vocab, flask.session["target_count"])
   flask.session["matches"] = {}
   app.logger.debug("Session variables have been set")
-  assert flask.session["matches"] == [ ]
+  assert flask.session["matches"] == {}
   assert flask.session["target_count"] > 0
   app.logger.debug("At least one seems to be set correctly")
   return flask.render_template('vocab.html')
