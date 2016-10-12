@@ -88,6 +88,8 @@ def check():
   jumble = flask.session["jumble"]
   matches = flask.session.get("matches", []) # Default to empty list
 
+  print("this is form: {}".format(request.form["attempt"]))
+
   if (app.logger.dubug(text) == ""):
     app.logger.dubug("text is empty")
 
