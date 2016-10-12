@@ -118,7 +118,8 @@ def check():
   ## Choose page:  Solved enough, or keep going? 
   if len(matches) >= flask.session["target_count"]:
     app.logger.debug("redirectiong to success")
-    return flask.redirect(url_for("success"))
+    rslt["flash"] = "Success"
+    return jsonify(result=rslt)
   else:
     return jsonify(result=rslt)
 
