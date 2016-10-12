@@ -92,15 +92,6 @@
 
 <p id="results"></p>
 
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <!-- Mismatch, already found, etc. "flashed" from Python -->
-    {% for message in messages %}
-      <p class="message">{{ message }}</p>
-    {% endfor %}
-  {% endif %}
-{% endwith %}
-
 <script>
 // Suppress normal form submission
 $("#entry").submit( function(event) {
@@ -138,6 +129,7 @@ $("#attempt").keyup(function(event) {
                    var foundWords = "";
                    data.result.matches.forEach(
                     function(word,index){
+                      console.log(word)
                       $("results").html(word);
                     })
                    console.log(data.result.matches);                   
