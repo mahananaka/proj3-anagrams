@@ -129,10 +129,9 @@ $("#attempt").keyup(function(event) {
                    var foundWords = "";
                    data.result.matches.forEach(
                     function(word,index){
-                      console.log(word)
-                      $("#results").html(word);
+                      foundWords = foundWords + " " + word;                      
                     })
-                   console.log(data.result.matches);                   
+                   $("#results").html(word);
                 }
                 //showTiles(txt);
                }
