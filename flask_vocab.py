@@ -81,17 +81,12 @@ def check():
   made only from the jumble letters, and not a word they
   already found.
   """
-  app.logger.debug("Entering check")
+  app.logger.debug("Entering check changed")
 
   ## The data we need, from form and from cookie
   text = request.form["attempt"]
   jumble = flask.session["jumble"]
   matches = flask.session.get("matches", []) # Default to empty list
-
-  print("this is form: {}".format(request.form["attempt"]))
-
-  if (app.logger.dubug(text) == ""):
-    app.logger.dubug("text is empty")
 
   ## Is it good? 
   in_jumble = LetterBag(jumble).contains(text)
