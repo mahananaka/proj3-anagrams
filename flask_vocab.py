@@ -88,7 +88,8 @@ def check():
   jumble = flask.session["jumble"]
   matches = flask.session.get("matches", []) # Default to empty list
 
-  app.logger.dubug(text)
+  if (app.logger.dubug(text) == ""):
+    app.logger.dubug("text is empty")
 
   ## Is it good? 
   in_jumble = LetterBag(jumble).contains(text)
