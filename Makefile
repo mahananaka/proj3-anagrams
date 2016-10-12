@@ -48,7 +48,7 @@ service:	env
 # 'make minijax' runs the flask test server for
 # the ajax examples
 #
-run:	env
+minijax:	env
 	($(INVENV) python3 flask_minijax.py) ||  true
 
 ##
