@@ -131,7 +131,7 @@ $("#attempt").keyup(function(event) {
 
    if (! "ABCDEFGHIJKLMNOPQRSTUVWXYZ".includes(letter)) { return }
 
-   $.post( "/_check", { text: txt }, 
+   $.post( "/_check", { attempt: txt }, 
               function(data) {
                 if (data.result.flash) {
                   $("#message").html(data.result.flash)
