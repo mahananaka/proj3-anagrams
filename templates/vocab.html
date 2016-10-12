@@ -145,9 +145,7 @@ $("#attempt").keyup(function(event) {
 
                 if (data.result.matches) {
                    var foundWords = "";
-                   for each (var word in data.results.matches) {
-                      foundWords = foundWords + " " + word;
-                   }
+                   console.log(data.result.matches);
                    $("results").html(foundWords);
                    
                 }
