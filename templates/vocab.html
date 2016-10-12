@@ -107,8 +107,8 @@ $("#attempt").keyup(function(event) {
 
    if(keycode == 8) //if they used the backspace
     return false;
-   console.log(event.which);
-
+   console.log(keycode);
+   console.log(letter)
    // That letter might not be a letter ... it could be the
    // the backspace key, or even the shift key, because 'keyup'
    // catches all kinds of keys.  (Also, the difference between
