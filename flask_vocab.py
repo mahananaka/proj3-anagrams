@@ -99,25 +99,20 @@ def check():
   if matched and in_jumble and not (text in matches):
     ## Cool, they found a new word
     matches.append(text)
-    flask.session["matches"] = matches
     rslt["flash"] = "You found a new word."
     rslt["matches"] = matches
   elif text in matches:
     rslt["flash"] = "You already found {}".format(text)
-    flask.flash(rslt["flash"])
   elif not matched:
     rslt["flash"] = "{} isn't in the list of words".format(text)
-    flask.flash(rslt["flash"])
   elif not in_jumble:
     rslt["flash"] = '"{}" can\'t be made from the letters {}'.format(text,jumble)
-    flask.flash(rslt["flash"])
   else:
     app.logger.debug("This case shouldn't happen!")
     assert False  # Raises AssertionError
 
   ## Choose page:  Solved enough, or keep going? 
   if len(matches) >= flask.session["target_count"]:
-    app.logger.debug("redirectiong to success")
     rslt["flash"] = "Success"
     return jsonify(result=rslt)
   else:

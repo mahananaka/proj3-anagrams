@@ -105,10 +105,9 @@ $("#attempt").keyup(function(event) {
    var keycode = event.which;      // They key that just went up
    var letter = String.fromCharCode(keycode);
 
-   if(keycode == 8) //if they used the backspace
+   if(keycode == 8 || keycode == 46) //if they used the backspace or delete
     return false;
-   console.log(keycode);
-   console.log(letter)
+
    // That letter might not be a letter ... it could be the
    // the backspace key, or even the shift key, because 'keyup'
    // catches all kinds of keys.  (Also, the difference between
@@ -128,8 +127,6 @@ $("#attempt").keyup(function(event) {
                     $("#attempt").val("")
                   }
                 }
-
-                console.log("flash: " + data.result.flash);
 
                 if (data.result.matches) {
                    var foundWords = "";
