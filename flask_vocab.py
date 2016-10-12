@@ -93,16 +93,22 @@ def check():
   matched = WORDS.has(text)
 
   ## Respond appropriately 
+  rslt = {}
   if matched and in_jumble and not (text in matches):
     ## Cool, they found a new word
     matches.append(text)
     flask.session["matches"] = matches
+    rslt["flash"] = "You found a new word."
+    rslt["matches"] = matches
   elif text in matches:
-    flask.flash("You already found {}".format(text))
+    rslt["flash"] = "You already found {}".format(text)
+    flask.flash(rslt["flash"])
   elif not matched:
-    flask.flash("{} isn't in the list of words".format(text))
+    rslt["flash"] = "{} isn't in the list of words".format(text)
+    flask.flash(rslt["flash"])
   elif not in_jumble:
-    flask.flash('"{}" can\'t be made from the letters {}'.format(text,jumble))
+    rslt["flash"] = '"{}" can\'t be made from the letters {}'.format(text,jumble)
+    flask.flash(rslt["flash"])
   else:
     app.logger.debug("This case shouldn't happen!")
     assert False  # Raises AssertionError
@@ -111,7 +117,7 @@ def check():
   if len(matches) >= flask.session["target_count"]:
     return flask.redirect(url_for("success"))
   else:
-    return flask.redirect(url_for("keep_going"))
+    return jsonify(result=rslt)
 
 ###############
 # AJAX request handlers 
