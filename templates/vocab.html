@@ -90,15 +90,7 @@
 
 <br />
 
-{% if session.matches|length is not equalto 0  %}
-<h2>You found </h2>
-<p id="results">
-  {% for match in session.matches %}
-  {{ match }} 
-  {% endfor %}
-</p>
-{% endif %}
-
+<p id="results"></p>
 
 {% with messages = get_flashed_messages() %}
   {% if messages %}
