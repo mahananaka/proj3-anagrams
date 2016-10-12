@@ -86,10 +86,11 @@ def check():
   ## The data we need, from form and from cookie
   try:
     text = request.form["attempt"]
-    jumble = flask.session["jumble"]
-    matches = flask.session.get("matches", []) # Default to empty list
   except:
     app.logger.debug("Exception happend!")
+
+  jumble = flask.session["jumble"]
+  matches = flask.session.get("matches", []) # Default to empty list
 
   app.logger.debug("Past the opening")
 
