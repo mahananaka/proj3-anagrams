@@ -44,6 +44,13 @@ service:	env
 	echo "Launching green unicorn in background"
 	($(INVENV) gunicorn --bind="0.0.0.0:8000" flask_vocab:app )&
 
+#
+# 'make minijax' runs the flask test server for
+# the ajax examples
+#
+run:	env
+	($(INVENV) python3 flask_minijax.py) ||  true
+
 ##
 ## Run test suite. 
 ## Currently 'nose' takes care of this, but in future we 
