@@ -81,7 +81,7 @@ def check():
   made only from the jumble letters, and not a word they
   already found.
   """
-  app.logger.debug("Entering check changed")
+  app.logger.debug(request.form["attempt"])
 
   ## The data we need, from form and from cookie
   text = request.form["attempt"]
