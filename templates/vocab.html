@@ -144,9 +144,11 @@ $("#attempt").keyup(function(event) {
 
                 if (data.result.matches) {
                    var foundWords = "";
-                   console.log(data.result.matches);
-                   $("results").html(data.result.matches);
-                   
+                   data.result.matches.forEach(
+                    function(word,index){
+                      $("results").html(word);
+                    })
+                   console.log(data.result.matches);                   
                 }
                 //showTiles(txt);
                }
