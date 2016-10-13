@@ -132,7 +132,7 @@ $("#attempt").keyup(function(event) {
                    var foundWords = "";
                    data.result.matches.forEach(
                     function(word,index){
-                      foundWords = foundWords + " " + showTiles(word);
+                      foundWords = foundWords + showTiles(word);
 
                     })
                    $("#results").html(foundWords);
@@ -160,7 +160,7 @@ function showTiles(text) {
        }
        var tileURL = "/static/img/letter-" + letter + ".png";
        var tileLink = "<img src='" + tileURL +
-           "' style='border: 0px; margin: 0px;'/>";
+           "' style='border: 0px; margin: 0px; width: 40px; height: 40px; '/><br>";
        tiles_html = tiles_html + tileLink;
     }
     console.log(tiles_html);
