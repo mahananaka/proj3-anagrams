@@ -110,7 +110,7 @@ $("#entry").submit( function(event) {
 
 // On each keystroke, ask the server if word spelled correctly
 //
-$("#attempt").onchange(function(event) {
+$("#attempt").change(function(event) {
     var txt = $("#attempt").val();  // Current content of the input field
     var keycode = event.which;      // They key that just went up
     var letter = String.fromCharCode(keycode);
