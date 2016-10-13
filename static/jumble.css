@@ -24,3 +24,12 @@ img {
 .hidden { 
 	display: none;
 }
+
+.defaultColor { 
+	color: black;
+}
+
+.fadedColor {
+	color: light gray;
+}
+
