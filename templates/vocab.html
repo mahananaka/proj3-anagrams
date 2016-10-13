@@ -208,14 +208,13 @@ function updateJumble(input){
 }
 
 function findUnusedLetter(letter, count){
-    console.log(letter, count);
     for(var i=1; i<=count; i++){
         var element = "#jumble" + i;
         var htmlText = $(element).html();
         var textClass = $(element).attr("class")
 
         if(htmlText.includes(letter) && textClass == normalStyle){
-            console.log("found letter");
+            console.log(element + " fading.");
             $(element).addClass(fadedStyle);
             $(element).removeClass(normalStyle);
             return true;
