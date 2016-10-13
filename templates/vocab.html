@@ -126,7 +126,7 @@ $("#attempt").keyup(function(event) {
                   }
 
                   
-                  if (data.result.flash.includes("You found") == true) {
+                  if (data.result.flash.includes("You found")) {
                     clearInput();
                     clearAlerts();
 
@@ -140,15 +140,14 @@ $("#attempt").keyup(function(event) {
                     }
                   }
 
-                  if (data.result.flash.includes("You already") == true) {
+                  if (data.result.flash.includes("You already")) {
                     clearInput();
                     $("#message").html(data.result.flash);
                   }
 
-                  console.log(data.result.flash.includes("be made from"));
-                  if (data.result.flash.includes("be made from") == true){
+                  if (data.result.flash.includes("be made from")){
                     clearInput();
-                    $("#message").html(foundWords);
+                    $("#message").html(data.result.flash);
                   }
                 }
               }
