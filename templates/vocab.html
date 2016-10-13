@@ -132,7 +132,7 @@ $("#attempt").keyup(function(event) {
                    var foundWords = "";
                    data.result.matches.forEach(
                     function(word,index){
-                      foundWords = foundWords + " " + word;                      
+                      foundWords = foundWords + " " + showTiles(word);
                     })
                    $("#results").html(foundWords);
                 }
