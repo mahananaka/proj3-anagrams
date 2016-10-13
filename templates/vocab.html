@@ -54,7 +54,7 @@
   -->
 <div class="row">
   {% for word in g.vocab %}
-    <div id="vocab{{word.index}}" class="col-xs-2 text-center"> {{ word }} </div>
+    <div id="vocab{{loop.index}}" class="col-xs-2 text-center"> {{ word }} </div>
     {% if loop.index is divisibleby 3 %}
     </div> <!-- row -->
     <div class="row">
