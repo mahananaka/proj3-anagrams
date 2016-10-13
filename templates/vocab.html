@@ -117,7 +117,7 @@ $("#attempt").keyup(function(event) {
     // upper and lower case comes from state of shift key + key code,
     // so ignoring the shift key we get only the upper case letters.
 
-    if (!validLastChar(letter)) { return }
+    if (!validLastChar(txt,letter)) { return }
     //if (! "ABCDEFGHIJKLMNOPQRSTUVWXYZ".includes(letter)) { return }
 
     $.post( "/_check", { attempt: txt }, 
@@ -166,7 +166,7 @@ $("#attempt").keyup(function(event) {
 // element is encountered. 
 //
 
-function validLastChar(word){
+function validLastChar(word, letter){
   //chop off the last letter in word if its not in the jumble
   if(!$("#jumble").html().includes(letter)){
     $("#attempt").val(word.substr(0,word.length-2))
