@@ -70,6 +70,9 @@
   </div>
   </div><div class="row">
   <div class="col-xs-6 text-center lead">
+    {% for letter in session.jumble %}
+        <span id="jumble{{loop.index}}">{{ letter}}</span>
+    {% endfor %}
     <strong id="jumble">{{ session.jumble }}</strong>
   </div>
   </div><div class="row">
@@ -91,7 +94,7 @@
 
 <p id="message"></p>
 <p id="results"></p>
-<span id="vocabcount">{{ g.vocab|length }}</span> <!-- hidden element holds number of vocab words -->
+<span id="vocabcount">{{ g.vocab|length }}</span> <!-- hidden by css; element holds number of vocab words -->
 
 <script>
 // Suppress normal form submission
@@ -182,6 +185,10 @@ function clearInput(){
   updateVocabList("");
 }
 
+function updateJumble(){
+
+}
+
 function updateVocabList(input){
     var count = $("#vocabcount").html();
     var defaultColor = "rgb(50,50,50)";
@@ -191,10 +198,12 @@ function updateVocabList(input){
         var element = "#vocab" + i;
         var valid = true;
 
+        //cycle through the each character in the input
+        //check if each vocab word contains this character
         for(var j=0; j<input.length; j++) {
             valid = valid && $(element).html().includes(input[j]);
             if(!valid)
-              break;
+              break; //end loop as soon as invalid
         }
 
         if(valid)
