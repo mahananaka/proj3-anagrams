@@ -214,7 +214,6 @@ function findUnusedLetter(letter, count){
         var textClass = $(element).attr("class")
 
         if(htmlText.includes(letter) && textClass == normalStyle){
-            console.log(element + " fading.");
             $(element).addClass(fadedStyle);
             $(element).removeClass(normalStyle);
             return true;
