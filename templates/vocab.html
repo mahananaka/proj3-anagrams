@@ -173,6 +173,7 @@ function clearAlerts(){
 
 function clearInput(){
   $("#attempt").val("");
+  updateEliminatedWords("");
 }
 
 function updateEliminatedWords(input){
@@ -185,7 +186,7 @@ function updateEliminatedWords(input){
         if(input == ""){
             $(element).css("color","rgb(50,50,50)");
         }
-        else if(!$(element).html().startsWith(input)){
+        else if($(element).html().startsWith(input)){
             $(element).css("color","rgb(50,50,50");
         }
         else {
