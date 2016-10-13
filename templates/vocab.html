@@ -117,7 +117,7 @@ $("#attempt").keyup(function(event) {
     // upper and lower case comes from state of shift key + key code,
     // so ignoring the shift key we get only the upper case letters.
 
-    if (!validLastChar(txt,letter)) { return }
+    if (!validLastChar(txt,letter.toLowerCase())) { return }
     //if (! "ABCDEFGHIJKLMNOPQRSTUVWXYZ".includes(letter)) { return }
 
     $.post( "/_check", { attempt: txt }, 
