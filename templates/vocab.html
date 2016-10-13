@@ -173,7 +173,7 @@ function validLastChar(word, letter){
   console.log($("#jumble").html().includes(letter));
 
   if(!$("#jumble").html().includes(letter)){
-    $("#attempt").val(word.substr(0,Math.min(word.length-2),0));
+    $("#attempt").val(word.substr(0,word.length-1);
     return false;
   }
   else
