@@ -119,11 +119,13 @@ $("#attempt").keyup(function(event) {
    $.post( "/_check", { attempt: txt }, 
               function(data) {
                 if (data.result.flash) {
+                  console.log(data.result.flash);
                   if (data.result.flash == "Success") {
                       $(location).attr("href", "/success");
                   }
+
                   $("#message").html(data.result.flash)
-                  if (~data.result.flash.indexOf("You found")) {
+                  if (~data.result.flash.indexOf("You already")) {
                     $("#attempt").val("")
                   }
                 }
@@ -136,7 +138,6 @@ $("#attempt").keyup(function(event) {
                     })
                    $("#results").html(foundWords);
                 }
-                //showTiles(txt);
                }
            );
    });
