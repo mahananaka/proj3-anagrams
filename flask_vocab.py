@@ -88,8 +88,6 @@ def check():
   jumble = flask.session["jumble"]
   matches = flask.session.get("matches", [ ]) # Default to empty list
 
-  app.logger.debug("Past the opening")
-
   ## Is it good? 
   in_jumble = LetterBag(jumble).contains(text)
   matched = WORDS.has(text)
@@ -98,6 +96,7 @@ def check():
   rslt = {}
   if matched and in_jumble and not (text in matches):
     ## Cool, they found a new word
+    app.logger.debug(matches)
     matches.append(text)
     rslt["flash"] = "You found a new word."
     rslt["matches"] = matches
