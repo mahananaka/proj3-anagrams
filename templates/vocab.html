@@ -114,7 +114,9 @@ $("#attempt").keyup(function(event) {
     var txt = $("#attempt").val();  // Current content of the input field
     var keycode = event.which;      // They key that just went up
     var letter = String.fromCharCode(keycode);
-    console.log(keycode +":"+letter);
+    
+    clearAlerts();
+
     //if user used the backspace or delete stop the function. When 
     //clearInput() is called it erases the txt, keyup is still fires
     //when this happens so we add a check for if txt is an empty 
@@ -142,7 +144,6 @@ $("#attempt").keyup(function(event) {
     
                 if (data.result.flash.includes("You found")) {
                     clearInput();
-                    clearAlerts();
 
                     if (data.result.matches) {
                         var foundWords = "";
