@@ -131,7 +131,7 @@ $("#attempt").keyup(function(event) {
                     if (data.result.matches) {
                         var foundWords = "";
 
-                        for(int i=0;i<data.results.matches.length;i++) {
+                        for(var i=0; i<data.results.matches.length; i++) {
                           foundWords = foundWords + showTiles(data.results.matches[i]) + "<br";
                         }
                         
