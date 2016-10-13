@@ -52,8 +52,9 @@
   -- bootstrap may collapse to fewer columns and
   -- more rows if the window is narrow.
   -->
-<div class="row">
-  {% for word in g.vocab %}
+<div class="wordList">
+  <div class="row">
+    {% for word in g.vocab %}
     <div id="vocab{{loop.index}}" class="col-xs-2 text-center">{{ word }}</div>
     {% if loop.index is divisibleby 3 %}
     </div> <!-- row -->
@@ -61,6 +62,7 @@
     {% endif %}
   {% endfor %}
 </div> <!-- row -->
+</div>
 
 <br />
 
