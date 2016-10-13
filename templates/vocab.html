@@ -125,7 +125,11 @@ $("#attempt").keyup(function(event) {
                       $(location).attr("href", "/success");
                   }
 
-                  $("#message").html(data.result.flash)
+                  //$("#message").html(data.result.flash)
+                  if (~data.result.flash.indexOf("You found")) {
+                    $("#attempt").val("")
+                  }
+
                   if (~data.result.flash.indexOf("You already")) {
                     $("#attempt").val("")
                   }
