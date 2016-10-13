@@ -126,6 +126,8 @@ $("#attempt").keyup(function(event) {
                   }
 
                   //$("#message").html(data.result.flash)
+                  console.log(data.result.flash.indexOf("You found"));
+                  console.log(~data.result.flash.indexOf("You found"));
                   if (~data.result.flash.indexOf("You found")) {
                     $("#attempt").val("")
 
