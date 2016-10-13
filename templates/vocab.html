@@ -73,7 +73,6 @@
     {% for letter in session.jumble %}
         <strong id="jumble{{loop.index}}">{{ letter}}</strong>
     {% endfor %}
-    <strong id="jumble">{{ session.jumble }}</strong>
   </div>
   </div><div class="row">
   <div class="col-xs-6 text-center">
@@ -94,7 +93,8 @@
 
 <p id="message"></p>
 <p id="results"></p>
-<span id="vocabcount">{{ g.vocab|length }}</span> <!-- hidden by css; element holds number of vocab words -->
+<span id="vocabcount" class="hidden">{{ g.vocab|length }}</span> <!-- hidden by css; element holds number of vocab words -->
+<span id="jumble" class="hidden">{{ session.jumble }}</span>
 
 <script>
 // Suppress normal form submission
