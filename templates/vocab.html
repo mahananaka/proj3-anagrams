@@ -175,13 +175,17 @@ function clearInput(){
   $("#attempt").val("");
 }
 
-function fadeEliminatedWords(){
+function fadeEliminatedWords(input){
     var count = $("#vocabcount").html();
     console.log(count)
 
     for(var i=1; i<=count;i++){
-        var tag = "#vocab" + i;
-        console.log($(tag).html());
+        var element = "#vocab" + i;
+
+        if($(tag).html().startsWith(input))
+          $(element).css("color";"light grey")
+        else
+          $(element).css("color";"black")
     }
 }
 
