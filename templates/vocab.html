@@ -127,8 +127,7 @@ $("#attempt").keyup(function(event) {
 
                   //$("#message").html(data.result.flash)
                   console.log(data.result.flash.includes("You found"));
-                  console.log(~data.result.flash.includes("You found"));
-                  if (~data.result.flash.includes("You found")) {
+                  if (data.result.flash.includes("You found") == true) {
                     $("#attempt").val("")
 
                     if (data.result.matches) {
@@ -141,7 +140,7 @@ $("#attempt").keyup(function(event) {
                     }
                   }
 
-                  if (~data.result.flash.includes("You already")) {
+                  if (data.result.flash.includes("You already") == true) {
                     $("#attempt").val("")
                   }
                 }
