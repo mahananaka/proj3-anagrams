@@ -191,8 +191,10 @@ function updateEliminatedWords(input){
 
         if(input == ""){
             $(element).css("color","rgb(50,50,50)");
+            continue;
         }
-        else if($(element).html().startsWith(input)){
+
+        if($(element).html().startsWith(input)){
             $(element).css("color","rgb(50,50,50");
         }
         else {
