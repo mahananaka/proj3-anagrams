@@ -184,7 +184,7 @@ function fadeEliminatedWords(input){
 
         if(input == "")
             $(element).css("color","black");
-        else if(!$(tag).html().startsWith(input))
+        else if(!$(element).html().startsWith(input))
             $(element).css("color","light grey");
         else
             $(element).css("color","black");
