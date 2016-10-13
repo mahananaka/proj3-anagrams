@@ -127,7 +127,7 @@ $("#attempt").keyup(function(event) {
 
     // stop as well if the letter typed is not in the jumble
     if (!validLastChar(txt,letter.toLowerCase())) { 
-        updateVocabList(txt);
+        updateVocabList(txt); 
         updateJumble(txt); //will remove the invalid char
         return 
     }
@@ -199,7 +199,9 @@ function updateJumble(input){
 
         if(!findUnusedLetter(input[i],jumbleCount)){
             var word = $("#attempt").val();
+            $("#message").html("The letter '" + input[i] + "' is not in the jumble, or all have been used.");
             $("#attempt").val(word.substr(0,word.length-1)); //chop off the last letter entered
+
         }
     }
 }
