@@ -115,8 +115,6 @@ $("#attempt").keyup(function(event) {
     // stop as well if the letter typed is not in the jumble
     if (!validLastChar(txt,letter.toLowerCase())) { return }
 
-    fadeEliminatedWords(txt);
-
     //All checks are good lets proceed to make an Ajax post to server
     $.post( "/_check", { attempt: txt }, 
         function(data) { //this function, written inline, is when the response comes.
@@ -154,6 +152,8 @@ $("#attempt").keyup(function(event) {
             }
         }
     );
+
+    updateEliminatedWords(txt);
 });
 
 function validLastChar(word, letter){
@@ -175,7 +175,7 @@ function clearInput(){
   $("#attempt").val("");
 }
 
-function fadeEliminatedWords(input){
+function updateEliminatedWords(input){
     var count = $("#vocabcount").html();
     console.log(count)
 
