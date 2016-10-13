@@ -182,6 +182,7 @@ function fadeEliminatedWords(input){
     for(var i=1; i<=count;i++){
         var element = "#vocab" + i;
 
+        console.log($(element).css("color"))
         if(input == "")
             $(element).css("color","black");
         else if(!$(element).html().startsWith(input))
