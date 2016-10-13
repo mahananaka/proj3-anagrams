@@ -99,6 +99,10 @@
 <span id="jumble" class="hidden">{{ session.jumble }}</span>
 
 <script>
+// Some global variables
+var fadedStyle = "fadedColor";
+var normalStyle = "defaultColor";
+
 // Suppress normal form submission
 $("#entry").submit( function(event) {
    event.preventDefault();
@@ -116,13 +120,15 @@ $("#attempt").keyup(function(event) {
     //when this happens so we add a check for if txt is an empty 
     //string as well
     if(keycode == 8 || keycode == 46 || txt == ""){ 
-        updateVocabList(txt); 
+        updateVocabList(txt);
+        updateJumble(txt); 
         return
     }
 
     // stop as well if the letter typed is not in the jumble
     if (!validLastChar(txt,letter.toLowerCase())) { 
         updateVocabList(txt);
+        updateJumble(txt);
         return 
     }
 
@@ -142,9 +148,7 @@ $("#attempt").keyup(function(event) {
                         var foundWords = "";
 
                         for(var i=0; i<data.result.matches.length; i++) {
-                          console.log(data.result.matches[i]);
                           foundWords = foundWords + showTiles(data.result.matches[i]) + "<br>";
-                          console.log(foundWords);
                         }
                         
                         $("#results").html(foundWords);
@@ -165,6 +169,7 @@ $("#attempt").keyup(function(event) {
     );
 
     updateVocabList(txt);
+    updateJumble(txt);
 });
 
 function validLastChar(word, letter){
@@ -185,16 +190,49 @@ function clearAlerts(){
 function clearInput(){
   $("#attempt").val("");
   updateVocabList("");
+  updateJumble("");
 }
 
-function updateJumble(){
+function updateJumble(input){
+    var jumbleCount = $("#jumble").html().length;
 
+    resetJumbleStyle();
+
+    for(var i=0; i<input.length; i++){
+
+        if(!findUnusedLetter(input[i],jumbleCount)){
+            var word = $("#attempt").val();
+            $("#attempt").val(word.substr(0,word.length-1)); //chop off the last letter entered
+        }
+    }
+}
+
+function findUnusedLetter(letter, count){
+    for(var i=1; i<=count; i++){
+        var element = "#jumble" + i;
+        var htmlText = $(element).html();
+        var textClass = $(element).attr("class")
+
+        if(htmlText.includes(letter) && textColor == normalStyle){
+            $(element).addClass(fadedStyle);
+            $(element).removeClass(normalStyle);
+            return true;
+        }
+    }
+}
+
+function resetJumbleStyle(){
+    var count = $("#jumble").html().length;
+    for(var i=1; i<=count; i++){
+        var element = "#jumble" + i;
+
+        $(element).addClass(normalStyle);
+        $(element).removeClass(fadedStyle);
+    }
 }
 
 function updateVocabList(input){
     var count = $("#vocabcount").html();
-    var defaultColor = "rgb(50,50,50)";
-    var fadedColor = "rgb(230,230,230)";
 
     for(var i=1; i<=count;i++){
         var element = "#vocab" + i;
@@ -208,10 +246,14 @@ function updateVocabList(input){
               break; //end loop as soon as invalid
         }
 
-        if(valid)
-            $(element).css("color",defaultColor);
-        else 
-            $(element).css("color",fadedColor);
+        if(valid){
+            $(element).addClass(normalStyle);
+            $(element).removeClass(fadedStyle);
+        }
+        else {
+            $(element).removeClass(normalStyle);
+            $(element).addClass(fadedStyle);
+        }
     }
 }
 
