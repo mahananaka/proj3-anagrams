@@ -133,6 +133,7 @@ $("#attempt").keyup(function(event) {
                    data.result.matches.forEach(
                     function(word,index){
                       foundWords = foundWords + " " + showTiles(word);
+
                     })
                    $("#results").html(foundWords);
                 }
@@ -162,7 +163,8 @@ function showTiles(text) {
            "' style='border: 0px; margin: 0px;'/>";
        tiles_html = tiles_html + tileLink;
     }
-    $("#tiles").html(tiles_html);
+    console.log(tiles_html);
+    return tiles_html;
     // alert("Inserted html: " + tiles_html);
 }
 </script>
