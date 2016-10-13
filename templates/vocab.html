@@ -132,9 +132,8 @@ $("#attempt").keyup(function(event) {
                    var foundWords = "";
                    data.result.matches.forEach(
                     function(word,index){
-                      console.log(foundWords);
                       foundWords = foundWords + showTiles(word) + "<br>";
-
+                      console.log(foundWords);
                     })
                    $("#results").html(foundWords);
                 }
