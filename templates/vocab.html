@@ -145,6 +145,7 @@ $("#attempt").keyup(function(event) {
                     $("#message").html(data.result.flash);
                   }
 
+                  console.log(data.result.flash.includes("be made from"));
                   if (data.result.flash.includes("be made from") == true){
                     clearInput();
                     $("#message").html(foundWords);
