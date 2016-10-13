@@ -91,7 +91,7 @@
 
 <p id="message"></p>
 <p id="results"></p>
-<span id="vocabcount">{{ g.vocab|length }}</span>
+<span id="vocabcount">{{ g.vocab|length }}</span> <!-- hidden element holds number of vocab words -->
 
 <script>
 // Suppress normal form submission
@@ -176,7 +176,13 @@ function clearInput(){
 }
 
 function fadeEliminatedWords(){
+    var count = $("#vocabcount").html();
+    console.log(count)
 
+    for(var i=1; i<=count;i++){
+        var tag = "#vocab" + i;
+        console.log($(tag).html());
+    }
 }
 
 // This function was used in it's entirety from an
