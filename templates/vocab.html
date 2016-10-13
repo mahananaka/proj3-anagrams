@@ -182,10 +182,12 @@ function fadeEliminatedWords(input){
     for(var i=1; i<=count;i++){
         var element = "#vocab" + i;
 
-        if($(tag).html().startsWith(input))
-          $(element).css("color";"light grey")
+        if(input == "")
+            $(element).css("color";"black");
+        else if(!$(tag).html().startsWith(input))
+            $(element).css("color";"light grey");
         else
-          $(element).css("color";"black")
+            $(element).css("color";"black");
     }
 }
 
