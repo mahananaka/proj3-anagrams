@@ -129,12 +129,10 @@ $("#attempt").keyup(function(event) {
                 }
 
                 if (data.result.matches) {
-                   var foundWords = "debug";
+                   var foundWords = $("#results").html();
                    data.result.matches.forEach(
                     function(word,index){
-                      console.log(foundWords);
                       foundWords = foundWords + showTiles(word) + "<br>";
-                      console.log(foundWords);
                     })
                    $("#results").html(foundWords);
                 }
