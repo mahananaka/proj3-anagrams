@@ -126,9 +126,9 @@ $("#attempt").keyup(function(event) {
                   }
 
                   //$("#message").html(data.result.flash)
-                  console.log(data.result.flash.indexOf("You found"));
-                  console.log(~data.result.flash.indexOf("You found"));
-                  if (~data.result.flash.indexOf("You found")) {
+                  console.log(data.result.flash.includes("You found"));
+                  console.log(~data.result.flash.includes("You found"));
+                  if (~data.result.flash.includes("You found")) {
                     $("#attempt").val("")
 
                     if (data.result.matches) {
@@ -141,7 +141,7 @@ $("#attempt").keyup(function(event) {
                     }
                   }
 
-                  if (~data.result.flash.indexOf("You already")) {
+                  if (~data.result.flash.includes("You already")) {
                     $("#attempt").val("")
                   }
                 }
