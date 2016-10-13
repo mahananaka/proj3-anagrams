@@ -106,7 +106,7 @@ $("#attempt").keyup(function(event) {
    var keycode = event.which;      // They key that just went up
    var letter = String.fromCharCode(keycode);
 
-   if(keycode == 8 || keycode == 46) //if they used the backspace or delete
+   if(keycode == 8 || keycode == 46 || txt = "") //if they used the backspace or delete or input was erased
     return false;
 
    // That letter might not be a letter ... it could be the
