@@ -43,9 +43,9 @@ def index():
   flask.g.vocab = WORDS.as_list();
   flask.session["target_count"] = min( len(flask.g.vocab), CONFIG.success_at_count )
   flask.session["jumble"] = jumbled(flask.g.vocab, flask.session["target_count"])
-  flask.session["matches"] = [ ]
+  flask.session["matches"] = []
   app.logger.debug("Session variables have been set")
-  assert flask.session["matches"] == [ ]
+  assert flask.session["matches"] == []
   assert flask.session["target_count"] > 0
   app.logger.debug("At least one seems to be set correctly")
   return flask.render_template('vocab.html')
@@ -86,7 +86,7 @@ def check():
   ## The data we need, from form and from cookie
   text = request.form["attempt"]
   jumble = flask.session["jumble"]
-  matches = flask.session.get("matches", [ ]) # Default to empty list
+  matches = flask.session.get("matches", []) # Default to empty list
 
   ## Is it good? 
   in_jumble = LetterBag(jumble).contains(text)
@@ -96,8 +96,10 @@ def check():
   rslt = {}
   if matched and in_jumble and not (text in matches):
     ## Cool, they found a new word
+    app.logger.debug(text)
     app.logger.debug(matches)
     matches.append(text)
+    app.logger.debug(matches)
     rslt["flash"] = "You found a new word."
     rslt["matches"] = matches
   elif text in matches:
