@@ -70,7 +70,7 @@
   </div>
   </div><div class="row">
   <div class="col-xs-6 text-center lead">
-    <strong>{{ session.jumble }}</strong>
+    <strong id="jumble">{{ session.jumble }}</strong>
   </div>
   </div><div class="row">
   <div class="col-xs-6 text-center">
@@ -102,22 +102,25 @@ $("#entry").submit( function(event) {
 // On each keystroke, ask the server if word spelled correctly
 //
 $("#attempt").keyup(function(event) {
-   var txt = $("#attempt").val();  // Current content of the input field
-   var keycode = event.which;      // They key that just went up
-   var letter = String.fromCharCode(keycode);
+    var txt = $("#attempt").val();  // Current content of the input field
+    var keycode = event.which;      // They key that just went up
+    var letter = String.fromCharCode(keycode);
 
-   if(keycode == 8 || keycode == 46 || txt == "") //if they used the backspace or delete or input was erased
-    return false;
+    //if user used the backspace or delete stop the function. When 
+    //clearInput() is called it erases the txt, keyup is still fires
+    //so we add a check for if txt is an empty string as well
+    if(keycode == 8 || keycode == 46 || txt == "") { return }
 
-   // That letter might not be a letter ... it could be the
-   // the backspace key, or even the shift key, because 'keyup'
-   // catches all kinds of keys.  (Also, the difference between
-   // upper and lower case comes from state of shift key + key code,
-   // so ignoring the shift key we get only the upper case letters.
+    // That letter might not be a letter ... it could be the
+    // the backspace key, or even the shift key, because 'keyup'
+    // catches all kinds of keys.  (Also, the difference between
+    // upper and lower case comes from state of shift key + key code,
+    // so ignoring the shift key we get only the upper case letters.
 
-   if (! "ABCDEFGHIJKLMNOPQRSTUVWXYZ".includes(letter)) { return }
+    if (!validLastChar(letter)) { return }
+    //if (! "ABCDEFGHIJKLMNOPQRSTUVWXYZ".includes(letter)) { return }
 
-   $.post( "/_check", { attempt: txt }, 
+    $.post( "/_check", { attempt: txt }, 
               function(data) {
                 if (data.result.flash) {
                   console.log(data.result.flash);
@@ -151,8 +154,8 @@ $("#attempt").keyup(function(event) {
                   }
                 }
               }
-           );
-   });
+    );
+});
 
 // Demonstration of how we can insert graphical elements
 // into a page, possibly building up the URLs of the elements
@@ -162,6 +165,17 @@ $("#attempt").keyup(function(event) {
 // files so that http requests are sent only the first time each
 // element is encountered. 
 //
+
+function validLastChar(word){
+  //chop off the last letter in word if its not in the jumble
+  if(!$("#jumble").html().includes(letter)){
+    $("#attempt").val(word.substr(0,word.length-2))
+    return false;
+  }
+  else
+    return true;
+}
+
 function clearAlerts(){
   $("#message").html("");
 }
