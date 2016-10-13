@@ -189,18 +189,16 @@ function updateVocabList(input){
 
     for(var i=1; i<=count;i++){
         var element = "#vocab" + i;
+        var valid = true;
 
-        //if(input == ""){
-        //    $(element).css("color",defaultColor);
-        //    continue;
-        //}
+        for(var j=0; j<input.length; j++) {
+            valid = valid && $(element).html().includes(intput[j]);
+        }
 
-        if($(element).html().startsWith(input) || input == ""){
+        if(valid)
             $(element).css("color",defaultColor);
-        }
-        else {
+        else 
             $(element).css("color",fadedColor);
-        }
     }
 }
 
