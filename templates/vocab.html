@@ -130,7 +130,7 @@ $("#attempt").keyup(function(event) {
                     $("#attempt").val("")
 
                     if (data.result.matches) {
-                      var foundWords = $("#results").html();
+                      var foundWords = "";
                       data.result.matches.forEach(
                         function(word,index){
                           foundWords = foundWords + showTiles(word) + "<br>";

@@ -97,7 +97,7 @@ def check():
   if matched and in_jumble and not (text in matches):
     ## Cool, they found a new word
     matches.append(text)
-    flash.session["matches"] = matches
+    flask.session["matches"] = matches
     rslt["flash"] = "You found a new word."
     rslt["matches"] = matches
   elif text in matches:
