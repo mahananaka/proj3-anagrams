@@ -115,7 +115,7 @@ $("#attempt").keyup(function(event) {
     // stop as well if the letter typed is not in the jumble
     if (!validLastChar(txt,letter.toLowerCase())) { return }
 
-    fadeEliminatedWords();
+    fadeEliminatedWords(txt);
 
     //All checks are good lets proceed to make an Ajax post to server
     $.post( "/_check", { attempt: txt }, 
@@ -182,14 +182,15 @@ function fadeEliminatedWords(input){
     for(var i=1; i<=count;i++){
         var element = "#vocab" + i;
 
-        console.log(element);
-        console.log($(element).css("color"));
-        if(input == "")
+        if(input == ""){
             $(element).css("color","rgb(50,50,50)");
-        else if(!$(element).html().startsWith(input))
+        }
+        else if(!$(element).html().startsWith(input)){
             $(element).css("color","rgb(50,50,50");
-        else
+        }
+        else {
             $(element).css("color","rgb(240,240,240)");
+        }
     }
 }
 
