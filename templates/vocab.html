@@ -116,7 +116,10 @@ $("#attempt").keyup(function(event) {
     }
 
     // stop as well if the letter typed is not in the jumble
-    if (!validLastChar(txt,letter.toLowerCase())) { return }
+    if (!validLastChar(txt,letter.toLowerCase())) { 
+        updateEliminatedWords(txt);
+        return 
+    }
 
     //All checks are good lets proceed to make an Ajax post to server
     $.post( "/_check", { attempt: txt }, 
