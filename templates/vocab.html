@@ -132,7 +132,9 @@ $("#attempt").keyup(function(event) {
                         var foundWords = "";
 
                         for(var i=0; i<data.result.matches.length; i++) {
+                          console.log(data.result.matches[i]);
                           foundWords = foundWords + showTiles(data.result.matches[i]) + "<br";
+                          console.log(foundWords);
                         }
                         
                         $("#results").html(foundWords);
