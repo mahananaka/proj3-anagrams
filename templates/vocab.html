@@ -127,7 +127,8 @@ $("#attempt").keyup(function(event) {
 
                   
                   if (data.result.flash.includes("You found") == true) {
-                    $("#attempt").val("")
+                    clearInput();
+                    clearAlerts();
 
                     if (data.result.matches) {
                       var foundWords = "";
@@ -140,12 +141,12 @@ $("#attempt").keyup(function(event) {
                   }
 
                   if (data.result.flash.includes("You already") == true) {
-                    $("#attempt").val("")
+                    clearInput();
                     $("#message").html(data.result.flash);
                   }
 
                   if(data.result.flash.includes("can't be made")){
-                    $("#attempt").val("")
+                    clearInput();
                     $("#message").html(foundWords);
                   }
                 }
@@ -161,6 +162,14 @@ $("#attempt").keyup(function(event) {
 // files so that http requests are sent only the first time each
 // element is encountered. 
 //
+function clearAlerts(){
+  $("#message").html("");
+}
+
+function clearInput(){
+  $("#attempt").val("");
+}
+
 function showTiles(text) {
    text = text.toUpperCase();  // tiles are letter-A.png, etc.
    tiles_html = "";  // Build up the html text of links
