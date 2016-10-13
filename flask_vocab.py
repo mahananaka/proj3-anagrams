@@ -96,10 +96,8 @@ def check():
   rslt = {}
   if matched and in_jumble and not (text in matches):
     ## Cool, they found a new word
-    app.logger.debug(text)
-    app.logger.debug(matches)
     matches.append(text)
-    app.logger.debug(matches)
+    flash.session["matches"] = matches
     rslt["flash"] = "You found a new word."
     rslt["matches"] = matches
   elif text in matches:
