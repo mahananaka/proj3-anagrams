@@ -110,7 +110,10 @@ $("#attempt").keyup(function(event) {
     //clearInput() is called it erases the txt, keyup is still fires
     //when this happens so we add a check for if txt is an empty 
     //string as well
-    if(keycode == 8 || keycode == 46 || txt == "") { return }
+    if(keycode == 8 || keycode == 46 || txt == ""){ 
+        updateEliminatedWords(txt); 
+        return
+    }
 
     // stop as well if the letter typed is not in the jumble
     if (!validLastChar(txt,letter.toLowerCase())) { return }
