@@ -168,6 +168,7 @@ $("#attempt").keyup(function(event) {
 
 function validLastChar(word, letter){
   //chop off the last letter in word if its not in the jumble
+  console.log($("#jumble").html());
   console.log($("#jumble").html().includes(letter));
 
   if(!$("#jumble").html().includes(letter)){
