@@ -125,8 +125,7 @@ $("#attempt").keyup(function(event) {
                       $(location).attr("href", "/success");
                   }
 
-                  //$("#message").html(data.result.flash)
-                  console.log(data.result.flash.includes("You found"));
+                  
                   if (data.result.flash.includes("You found") == true) {
                     $("#attempt").val("")
 
@@ -142,11 +141,15 @@ $("#attempt").keyup(function(event) {
 
                   if (data.result.flash.includes("You already") == true) {
                     $("#attempt").val("")
+                    $("#message").html(data.result.flash);
+                  }
+
+                  if(data.result.flash.includes("can't be made")){
+                    $("#attempt").val("")
+                    $("#message").html(foundWords);
                   }
                 }
-
-
-               }
+              }
            );
    });
 
