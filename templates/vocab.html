@@ -111,13 +111,13 @@ $("#attempt").keyup(function(event) {
     //when this happens so we add a check for if txt is an empty 
     //string as well
     if(keycode == 8 || keycode == 46 || txt == ""){ 
-        updateEliminatedWords(txt); 
+        updateVocabList(txt); 
         return
     }
 
     // stop as well if the letter typed is not in the jumble
     if (!validLastChar(txt,letter.toLowerCase())) { 
-        updateEliminatedWords(txt);
+        updateVocabList(txt);
         return 
     }
 
@@ -159,7 +159,7 @@ $("#attempt").keyup(function(event) {
         }
     );
 
-    updateEliminatedWords(txt);
+    updateVocabList(txt);
 });
 
 function validLastChar(word, letter){
@@ -179,26 +179,27 @@ function clearAlerts(){
 
 function clearInput(){
   $("#attempt").val("");
-  updateEliminatedWords("");
+  updateVocabList("");
 }
 
-function updateEliminatedWords(input){
+function updateVocabList(input){
     var count = $("#vocabcount").html();
-    console.log(count)
+    var defaultColor = "rgb(50,50,50)";
+    var fadedColor = "rgb(230,230,230)";
 
     for(var i=1; i<=count;i++){
         var element = "#vocab" + i;
 
-        if(input == ""){
-            $(element).css("color","rgb(50,50,50)");
-            continue;
-        }
+        //if(input == ""){
+        //    $(element).css("color",defaultColor);
+        //    continue;
+        //}
 
-        if($(element).html().startsWith(input)){
-            $(element).css("color","rgb(50,50,50");
+        if($(element).html().startsWith(input) || input == ""){
+            $(element).css("color",defaultColor);
         }
         else {
-            $(element).css("color","rgb(240,240,240)");
+            $(element).css("color",fadedColor);
         }
     }
 }
