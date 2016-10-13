@@ -130,11 +130,11 @@ $("#attempt").keyup(function(event) {
 
                     if (data.result.matches) {
                         var foundWords = "";
-                        data.result.matches.forEach(
-                            function(word,index){
-                              foundWords = foundWords + showTiles(word) + "<br>";
-                            }
-                        )
+
+                        for(int i=0;i<data.results.matches.length;i++) {
+                          foundWords = foundWords + showTiles(data.results.matches[i]) + "<br";
+                        }
+                        
                         $("#results").html(foundWords);
                     }
                 }
@@ -173,7 +173,7 @@ function clearInput(){
 }
 
 function fadeEliminatedWords(){
-
+  foreach()
 }
 
 // This function was used in it's entirety from an
