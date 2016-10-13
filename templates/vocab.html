@@ -93,7 +93,9 @@
 
 <p id="message"></p>
 <p id="results"></p>
-<span id="vocabcount" class="hidden">{{ g.vocab|length }}</span> <!-- hidden by css; element holds number of vocab words -->
+
+<!-- hidden by css; element hold helper data -->
+<span id="vocabcount" class="hidden">{{ g.vocab|length }}</span> 
 <span id="jumble" class="hidden">{{ session.jumble }}</span>
 
 <script>
