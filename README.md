@@ -23,8 +23,8 @@ When writing and testing this program, the test machine was a Raspberry Pi 3 run
 Raspian Jesse. This is the best sure fire way that the install will go smoothly. 
 However you should have success as long as you have bash and make on your server machine
 
-* git clone https://github.com/mahananaka/proj3-anagrams.git <install directory>
-* cd <install directory>
+* git clone https://github.com/mahananaka/proj3-anagrams.git < install directory >
+* cd < install directory >
 * bash ./configure
 * make run
 
