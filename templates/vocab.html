@@ -93,8 +93,8 @@
 
 <br />
 
-<p id="message"></p>
-<p id="results"></p>
+<div id="message" class="col-xs-6 text-center"></div>
+<div id="results" class="col-xs-6 text-center"></div>
 
 <!-- hidden by css; element hold helper data -->
 <span id="vocabcount" class="hidden">{{ g.vocab|length }}</span> 
@@ -117,7 +117,7 @@ $("#attempt").keyup(function(event) {
     //Note I stopped using the above variable because it captures the value of #attempt
     //at one point. This is bad since in design we want to change the input whenver
     //we get bad input. This I choose to just call the value every time it is used.
-    
+
     var keycode = event.which;      // They key that just went up
     var letter = String.fromCharCode(keycode);
     
