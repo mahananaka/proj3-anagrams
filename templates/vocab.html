@@ -119,7 +119,7 @@ $("#attempt").keyup(function(event) {
     //at one point. This is bad since in design we want to change the input whenver
     //we get bad input. This I choose to just call the value every time it is used.
 
-    var keycode = event.which;      // They key that just went up
+    var keycode = event.which;      // The key that just went up
     var letter = String.fromCharCode(keycode);
     
     clearAlerts();
@@ -135,7 +135,7 @@ $("#attempt").keyup(function(event) {
     }
 
     // stop as well if the letter typed is not in the jumble
-    if (!validLastChar($("#attempt").val(),letter.toLowerCase())) {
+    if (!validLastChar(letter.toLowerCase())) {
         updateJumble($("#attempt").val()); //will remove the invalid char
         updateVocabList($("#attempt").val());         
         return 
@@ -149,12 +149,14 @@ $("#attempt").keyup(function(event) {
                     $(location).attr("href", "/success");
                 }
     
+                //match made display it
                 if (data.result.flash.includes("You found")) {
                     clearInput();
 
                     if (data.result.matches) {
                         var foundWords = "";
 
+                        //this writes the found word in letter tiles
                         for(var i=0; i<data.result.matches.length; i++) {
                           foundWords = foundWords + showTiles(data.result.matches[i]) + "<br>";
                         }
@@ -163,11 +165,13 @@ $("#attempt").keyup(function(event) {
                     }
                 }
 
+                //this word has already been found
                 if (data.result.flash.includes("You already")) {
                     clearInput();
                     $("#message").html(data.result.flash);
                 }
 
+                //this word can't be made from the jumble
                 if (data.result.flash.includes("be made from")){
                     clearInput();
                     $("#message").html(data.result.flash);
@@ -176,11 +180,13 @@ $("#attempt").keyup(function(event) {
         }
     );
 
+    //update the jumble and word list after changes have been made to input.
     updateJumble($("#attempt").val());
     updateVocabList($("#attempt").val());    
 });
 
-function validLastChar(word, letter){
+//tells if the last character in the user input is valid
+function validLastChar(letter){
   //returns true letter is valid
   if(!$("#jumble").html().includes(letter))
     return false;
@@ -188,38 +194,47 @@ function validLastChar(word, letter){
     return true;
 }
 
+//clears response message
 function clearAlerts(){
   $("#message").html("");
 }
 
+//clears the input field, and updates the world list and jumble
 function clearInput(){
   $("#attempt").val("");
   updateVocabList("");
   updateJumble("");
 }
 
+//updates the jumble to fade out used letters, or unfade them.
 function updateJumble(input){
     var jumbleCount = $("#jumble").html().length;
 
     resetJumbleStyle();
 
+    //have to do this for each letter in the input
     for(var i=0; i<input.length; i++){
 
         if(!findUnusedLetter(input[i],jumbleCount)){
+            //the letter isn't avialable in jumble
             var word = $("#attempt").val();
             $("#message").html("The letter '" + input[i] + "' is not in the jumble, or all have been used.");
-            $("#attempt").val(word.substr(0,word.length-1)); //chop off the last letter entered
+            $("#attempt").val(word.substr(0,word.length-1)); //chop off the invalid letter entered
 
         }
     }
 }
 
+//this function takes one letter and looks through 
+//the entire jumble to see if it is there, and also
+//makes sure that each letter is used only once.
 function findUnusedLetter(letter, count){
     for(var i=1; i<=count; i++){
         var element = "#jumble" + i;
         var htmlText = $(element).html();
         var textClass = $(element).attr("class")
 
+        //when the textClass is normalStyle, it hasn't been used yet.
         if(htmlText.includes(letter) && textClass == normalStyle){
             $(element).addClass(fadedStyle);
             $(element).removeClass(normalStyle);
@@ -228,6 +243,8 @@ function findUnusedLetter(letter, count){
     }
 }
 
+//simplest way to handle freed up letters is to
+//reset all the classes back to normal
 function resetJumbleStyle(){
     var count = $("#jumble").html().length;
     for(var i=1; i<=count; i++){
@@ -238,21 +255,26 @@ function resetJumbleStyle(){
     }
 }
 
+//this updates the word list, fading out words
+//which can't be made from the typed letters.
 function updateVocabList(input){
     var count = $("#vocabcount").html();
 
+    //this outer loop is cycling through each word in the list
     for(var i=1; i<=count;i++){
         var element = "#vocab" + i;
         var valid = true;
 
         //cycle through the each character in the input
-        //check if each vocab word contains this character
+        //check if the current vocab word contains each character
         for(var j=0; j<input.length; j++) {
+            //just && current result to previous ones
             valid = valid && $(element).html().includes(input[j]);
             if(!valid)
               break; //end loop as soon as invalid
         }
 
+        //finally this is the actual css swapping
         if(valid){
             $(element).addClass(normalStyle);
             $(element).removeClass(fadedStyle);
@@ -264,9 +286,10 @@ function updateVocabList(input){
     }
 }
 
-// This function was used in it's entirety from an
-// example by Michal Young in minijax.html. I only 
-// altered the image size for my purposes.
+// This function was only slightly modified most of
+// it is from an example by Michal Young in minijax.html.
+// Minijax.html can be found in the original hub that this
+// one is forked from.
 function showTiles(text) {
    text = text.toUpperCase();  // tiles are letter-A.png, etc.
    tiles_html = "";  // Build up the html text of links
@@ -275,6 +298,8 @@ function showTiles(text) {
        if (! "ABCDEFGHIJKLMNOPQRSTUVWXYZ".includes(letter)) {
           continue;
        }
+
+       //building html string of images.
        var tileURL = "/static/img/letter-" + letter + ".png";
        var tileLink = "<img src='" + tileURL + "'/>";
        tiles_html = tiles_html + tileLink;
