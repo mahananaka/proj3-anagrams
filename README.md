@@ -28,9 +28,9 @@ However you should have success as long as you have bash and make on your server
 * bash ./configure
 * make run
 
-The program should then sit idle and wait for page request. The default port is
-port 5000, to get the main page http://<serverip>:5000/ or if you're on the server
-machine http://localhost:5000/. To stop the program use ctrl+c.
+The program should then sit idle and wait for page requests. The default port is
+port 5000, to get the main page surf to http://< serverip >:5000/ or if you're on the server
+machine http://localhost:5000/. To stop the program at any time use ctrl+c.
 
 ## Tests
 Several automated test file were written to test the game's underlying framework. 
