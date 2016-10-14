@@ -124,15 +124,15 @@ $("#attempt").keyup(function(event) {
     //when this happens so we add a check for if txt is an empty 
     //string as well
     if(keycode == 8 || keycode == 46 || txt == ""){ 
+        updateJumble(txt);
         updateVocabList(txt);
-        updateJumble(txt); 
         return
     }
 
     // stop as well if the letter typed is not in the jumble
-    if (!validLastChar(txt,letter.toLowerCase())) { 
-        updateVocabList(txt); 
+    if (!validLastChar(txt,letter.toLowerCase())) {
         updateJumble(txt); //will remove the invalid char
+        updateVocabList(txt);         
         return 
     }
 
@@ -171,8 +171,8 @@ $("#attempt").keyup(function(event) {
         }
     );
 
-    updateVocabList(txt);
     updateJumble(txt);
+    updateVocabList(txt);    
 });
 
 function validLastChar(word, letter){
