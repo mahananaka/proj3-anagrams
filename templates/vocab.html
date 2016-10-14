@@ -113,7 +113,11 @@ $("#entry").submit( function(event) {
 // On each keystroke, ask the server if word spelled correctly
 //
 $("#attempt").keyup(function(event) {
-    var txt = $("#attempt").val();  // Current content of the input field
+    //var text = $("#attempt").val();
+    //Note I stopped using the above variable because it captures the value of #attempt
+    //at one point. This is bad since in design we want to change the input whenver
+    //we get bad input. This I choose to just call the value every time it is used.
+    
     var keycode = event.which;      // They key that just went up
     var letter = String.fromCharCode(keycode);
     
@@ -123,21 +127,21 @@ $("#attempt").keyup(function(event) {
     //clearInput() is called it erases the txt, keyup is still fires
     //when this happens so we add a check for if txt is an empty 
     //string as well
-    if(keycode == 8 || keycode == 46 || txt == ""){ 
-        updateJumble(txt);
-        updateVocabList(txt);
+    if(keycode == 8 || keycode == 46 || $("#attempt").val() == ""){ 
+        updateJumble($("#attempt").val());
+        updateVocabList($("#attempt").val());
         return
     }
 
     // stop as well if the letter typed is not in the jumble
-    if (!validLastChar(txt,letter.toLowerCase())) {
-        updateJumble(txt); //will remove the invalid char
-        updateVocabList(txt);         
+    if (!validLastChar($("#attempt").val(),letter.toLowerCase())) {
+        updateJumble($("#attempt").val()); //will remove the invalid char
+        updateVocabList($("#attempt").val());         
         return 
     }
 
     //All checks are good lets proceed to make an Ajax post to server
-    $.post( "/_check", { attempt: txt }, 
+    $.post( "/_check", { attempt: $("#attempt").val() }, 
         function(data) { //this function, written inline, is when the response comes.
             if (data.result.flash) {
                 if (data.result.flash == "Success") {
@@ -171,8 +175,8 @@ $("#attempt").keyup(function(event) {
         }
     );
 
-    updateJumble(txt);
-    updateVocabList(txt);    
+    updateJumble($("#attempt").val());
+    updateVocabList($("#attempt").val());    
 });
 
 function validLastChar(word, letter){
